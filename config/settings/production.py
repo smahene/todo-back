@@ -1,4 +1,5 @@
 ﻿import os
+import sentry_sdk
 import dj_database_url
 from .base import *
 
@@ -13,3 +14,10 @@ DATABASES = {
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+SENTRY_DSN = os.environ.get('SENTRY_DSN')
+if SENTRY_DSN:
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        send_default_pii=True,
+    )
