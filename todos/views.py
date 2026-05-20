@@ -5,7 +5,7 @@ from .serializers import TodoSerializer
 
 class TodoViewSet(viewsets.ModelViewSet):
     serializer_class = TodoSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         return Todo.objects.filter(owner=self.request.user).order_by('-created_at')
